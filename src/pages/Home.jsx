@@ -1,8 +1,11 @@
 import React from "react";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { format, register } from "timeago.js";
+import koLocale from "timeago.js/lib/lang/ko";
+register("ko", koLocale);
 
 export default function Home() {
-  const client = useQueryClient();
+  // const client = useQueryClient();
   const {
     isLoading,
     error,
@@ -15,14 +18,18 @@ export default function Home() {
   if (error) return <p>{error}</p>;
 
   console.log(videos);
+  const { items } = videos;
 
   return (
-    <ul>
-      {/* {videos.items.map((item) => (
-        <li>
-          <span>{item.snippet.title}</span>
+    <ul className="flex flex-wrap">
+      {items.map((item) => (
+        <li className="basis-1/4" key={item.id.videoId + "key"}>
+          <img src={item.snippet.thumbnails.default.url} alt="이미지" />
+          <p>{item.snippet.title}</p>
+          <p className="truncate ...">{item.snippet.channelTitle}</p>
+          <p>{format(item.snippet.publishTime, "ko")}</p>
         </li>
-      ))} */}
+      ))}
     </ul>
   );
 }
