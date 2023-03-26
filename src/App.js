@@ -1,25 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
-import Root from "./pages/Root";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-    ],
-  },
-]);
+import { Outlet } from "react-router-dom";
+import SearchHeader from "./components/SearchHeader";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <SearchHeader />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
