@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import VideoCard from "../components/VideoCard";
 
-// import { search } from "../api/youtube";
-import FakeYoutube from "../api/fakeYoutube";
 import { useYoutubeApi } from "../context/YoutubeApiContext";
 
 export default function Videos() {
@@ -15,6 +13,7 @@ export default function Videos() {
     error,
     data: videos,
   } = useQuery(["videos", keyword], () => youtube.search(keyword));
+
   return (
     <>
       <div>Videos {keyword ? `🔍${keyword}` : "🔥"}</div>
