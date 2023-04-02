@@ -15,7 +15,7 @@ export default function VideoCard({ video, type }) {
       }}
     >
       <img
-        className={isList ? "w-60 mr-2" : "w-full"}
+        className={`rounded-lg ${isList ? "w-60 mr-2" : "w-full"}`}
         src={thumbnails.medium.url}
         alt={title}
       />
